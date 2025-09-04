@@ -52,8 +52,9 @@ export function FadeIn({
       animate="show"
       viewport={{ once: true }}
       variants={FADE_ANIMATION_VARIANTS}
+      className={className}
     >
-      <motion.span className={className}>{children}</motion.span>
+      {children}
     </motion.div>
   );
 }

@@ -1,28 +1,33 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
+import Image from "next/image";
 
 interface Project {
-  name: string;
-  body: string;
+  id: string;
   slug: string;
-  image: string;
+  body: string;
+  collection: string;
+  data: {
+    layout: string;
+    pubDate: string;
+    title: string;
+    description: string;
+    category: string;
+    image: string;
+    tags: string[];
+    projectURL?: string;
+    repoURL?: string;
+  };
 }
 
 interface ProjectShowcaseVerticalProps {
   projects: Project[];
 }
 
-const ReviewCard = ({
-  name,
-  body,
-  slug,
-  image,
-}: {
-  name: string;
-  body: string;
-  slug: string;
-  image: string;
-}) => {
+const ReviewCard = ({ project }: { project: Project }) => {
+  const { slug, body, data } = project;
+  const { title, image, description, projectURL } = data;
+
   return (
     <figure
       className={cn(
@@ -33,23 +38,26 @@ const ReviewCard = ({
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
     >
-      <a href={`https://bento.engage-dev.com/projects/${slug}`}>
+      <a href={projectURL || `https://deepseekdrew.com/#projects/${slug}`} target="_blank" rel="noopener noreferrer">
         <div className="flex flex-row items-center gap-2">
           <div className="flex flex-col">
             <div className="flex items-start gap-2">
-              <img
-                src={`https://bento.engage-dev.com${image}`}
-                alt={name}
-                className="w-8 h-8 rounded-lg object-cover shadow"
-              />
+              <div className="relative h-8 w-8">
+                <Image
+                  src={image}
+                  alt={title}
+                  fill
+                  className="rounded-lg object-cover shadow"
+                />
+              </div>
               <figcaption className="text-lg font-medium dark:text-white">
-                {name}
+                {title}
               </figcaption>
             </div>
           </div>
         </div>
         <blockquote className="mt-2 text-sm line-clamp-4 dark:text-white font-thin">
-          {body}
+          {description}
         </blockquote>
       </a>
     </figure>
@@ -59,24 +67,25 @@ const ReviewCard = ({
 const ProjectShowcaseVertical = ({
   projects,
 }: ProjectShowcaseVerticalProps) => {
-  const firstRow = projects.slice(0, 5); // Get first 5 projects
-  const secondRow = projects.slice(5, 10); // Get next 5 projects
+  const doubledProjects = [...projects, ...projects]; // Duplicate projects to ensure continuous flow
+  const firstRow = doubledProjects.slice(0, Math.ceil(doubledProjects.length / 2));
+  const secondRow = doubledProjects.slice(Math.ceil(doubledProjects.length / 2));
 
   return (
     <div className="relative flex h-full w-full flex-row items-center justify-center overflow-hidden rounded-lg border bg-background sm:px-2 md:shadow-xl">
-      <Marquee pauseOnHover vertical className="[--duration:60s] w-full">
+      <Marquee pauseOnHover vertical className="[--duration:30s] w-full">
         {firstRow.map((project) => (
-          <ReviewCard key={project.slug} {...project} />
+          <ReviewCard key={project.id} project={project} />
         ))}
       </Marquee>
       <Marquee
         reverse
         pauseOnHover
         vertical
-        className="[--duration:60s] w-full"
+        className="[--duration:30s] w-full"
       >
         {secondRow.map((project) => (
-          <ReviewCard key={project.slug} {...project} />
+          <ReviewCard key={project.id} project={project} />
         ))}
       </Marquee>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>

@@ -13,12 +13,10 @@ import Technologies from "@/components/technologies";
 import ThemeToggle from "@/components/theme-toggle";
 import Orbit from "@/components/orbit";
 import RetroGrid from "@/components/magicui/retro-grid";
-import StatsChart from "@/components/stats-chart";
 import { cn } from "@/lib/utils";
 import { defaultDomains } from "@/lib/data";
 import { RippleCard } from "./ui/ripper-card";
 import { motion } from "framer-motion";
-import GitHubStars from "@/components/github-stars";
 import ProjectPosts from "@/components/project-posts";
 
 const features = [
@@ -48,21 +46,21 @@ const features = [
   },
   {
     Icon: "",
-    name: "I'm Josh",
+    name: "I'm Drew",
     description:
       "software engineer & open-source contributor focused in gen-ai, web, linux, cybersecurity, and finance.",
     className: "col-span-3 md:col-span-1",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}`,
+    href: "https://deepseekdrew.com/",
     cta: "Visit portfolio",
     background: (
       <div>
-        <div className="absolute right-0 top-0 h-3/4 w-full border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_5%,#000_50%)] group-hover:scale-105">
-          <BlurIn duration={0.5} className="h-full">
+        <div className="absolute right-0 top-0 h-3/4 w-full border-none [mask-image:linear-gradient(to_top,transparent_5%,#000_50%)]">
+          <BlurIn duration={0.5} className="group-hover:scale-105 transition-transform duration-500 ease-in-out">
             <Image
               className="object-cover object-center h-full w-full"
               src={
                 process.env.AVATAR_URL ||
-                "https://github.com/engageintellect.png"
+                "https://github.com/drewsephski.png"
               }
               alt="avatar image"
               width={200}
@@ -113,7 +111,7 @@ const features = [
     Icon: "",
     name: "Tech Domain",
     description: "Sector-agnostic, focused on solving problems with code.",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/projects`,
+    href: `https://drew-shadcn.netlify.app/`,
     cta: "View projects",
     className: "col-span-3 md:col-span-1",
     background: (
@@ -128,7 +126,7 @@ const features = [
         >
           {defaultDomains.map((f, idx) => (
             <a
-              href={`${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/tags/${f.slug}`}
+              href={`https://deepseekdrew.com/#projects`}
               key={idx}
               className={cn(
                 "relative w-40 h-full cursor-pointer overflow-hidden rounded-xl border p-4 hover:-translate-y-1",
@@ -172,7 +170,7 @@ const features = [
     name: "AI Integrations",
     description:
       "Generative UIs, LLMs, Transformers, Chatbots, Classification, and more.",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/tags/ai`,
+    href: `https://deepseekdrew.com/#services`,
     cta: "Visit AI projects",
     className: "col-span-3 md:col-span-2",
     background: (
@@ -190,7 +188,7 @@ const features = [
     name: "Seamless Deployments",
     description: "Push, build, deploy.",
     className: "col-span-3 md:col-span-1",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/tags/vercel`,
+    href: `https://drewsepsi.netlify.app/`,
     cta: "Learn more",
     background: (
       <div className="absolute w-full h-full right-0 top-0 origin-top rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_25%,#000_70%)] group-hover:scale-105">
@@ -205,7 +203,7 @@ const features = [
     description:
       "Deploy to any region on earth. From remote servers, on-prem, in the cloud, or to the edge.",
     className: "col-span-3 md:col-span-3",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/tags/vercel`,
+    href: `https://deepseekdrew.com/#blog`,
     cta: "Learn more",
     background: (
       <div className="absolute w-full h-full right-0 top-0 origin-top rounded-md transition-all duration-300 ease-out  [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] md:[mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105 group-hover:-translate-y-4">
@@ -216,40 +214,11 @@ const features = [
 
   {
     Icon: "",
-    name: "GitHub Stars",
-    description: "Star this repository to show your support.",
-    className: "col-span-3 md:col-span-1",
-    href: `${process.env.GITHUB_URL}/${process.env.REPO_NAME}`,
-    cta: "Star repository",
-    background: (
-      <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_70%)] group-hover:scale-105 group-hover:-translate-y-4">
-        <div className="text-7xl font-semibold w-full flex justify-center items-center h-2/3 group-hover:-translate-y-2 transition-all duration-300">
-          <a
-            href={`${process.env.GITHUB_URL}/${process.env.REPO_NAME}`}
-            className="flex items-center gap-2 border shadow-xl p-5 rounded-lg border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
-          >
-            <GitHubStars />
-            <Image
-              src="/images/githubstar.webp"
-              alt="GitHub logo"
-              className="h-14 w-14 drop-shadow"
-              width={56}
-              height={56}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-    ),
-  },
-
-  {
-    Icon: "",
     name: "Project Showcase",
     description:
       "Here are a few of my recent projects, using the technologies mentioned above.",
     className: "col-span-3 md:col-span-2",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/projects`,
+    href: "https://deepseekdrew.com/#projects",
     cta: "All projects",
     background: (
       <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out group-hover:scale-[102%]">
@@ -268,31 +237,10 @@ const features = [
 
   {
     Icon: "",
-    name: "Daily Visitors",
-    description: "Live visitor stats for this website, powered by Umami Analytics.",
-    href: "https://umami.is",
-    cta: "Umami",
-    className: "col-span-3 md:col-span-2",
-    background: (
-      <>
-        <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out group-hover:scale-[102%]">
-          <div className="absolute h-full w-full [mask-image:linear-gradient(to_top,transparent_20%,#000_70%)]">
-            <div className="absolute h-full w-full [mask-image:linear-gradient(to_bottom,transparent_2%,#000_10%)]"></div>
-            <div className="sm:-translate-y-5">
-              <StatsChart />
-            </div>
-          </div>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    Icon: "",
     name: "",
     description: "",
     className: "col-span-3 md:col-span-1",
-    href: `${process.env.NEXT_PUBLIC_PORTFOLIO_URL}/now`,
+    href: "https://lynxy.netlify.app/",
     cta: "Ideas",
     background: (
       <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out group-hover:scale-[105%]">

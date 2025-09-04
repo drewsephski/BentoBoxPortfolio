@@ -35,7 +35,7 @@ export function InputWithButton() {
     >
       <Input
         type="email"
-        placeholder="Email"
+        placeholder="drewsepeczi@gmail.com"
         value={email}
         onChange={handleInputChange}
         className="border-neutral-500"

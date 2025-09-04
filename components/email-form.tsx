@@ -85,7 +85,7 @@ export function EmailForm() {
                 <FormControl className="w-full">
                   <Input
                     className="w-full border-neutral-500 text-base" // Ensure font size is at least 16px
-                    placeholder="email@domain.com"
+                    placeholder="drewsepeczi@gmail.com"
                     {...field}
                   />
                 </FormControl>

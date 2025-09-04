@@ -119,7 +119,16 @@ const config = {
           "0%": { transform: "translateY(-50%)" },
           "100%": { transform: "translateY(0)" },
         },
-        
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
         ripple: {
           "0%, 100%": {
             transform: "translate(-50%, -50%) scale(1)",
@@ -140,6 +149,7 @@ const config = {
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
         grid: "grid 15s linear infinite",
         ripple: "ripple 3400ms ease infinite",
+        "fade-in": "fade-in 0.5s ease-out forwards",
 
 
 

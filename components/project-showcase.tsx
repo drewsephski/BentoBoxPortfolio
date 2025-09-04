@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
+import Image from "next/image";
 
 interface Project {
   name: string;
   body: string;
   slug: string;
+  image: string;
 }
 
 interface ProjectShowcaseProps {
@@ -15,10 +17,12 @@ const ReviewCard = ({
   name,
   body,
   slug,
+  image,
 }: {
   name: string;
   body: string;
   slug: string;
+  image: string;
 }) => {
   return (
     <figure
@@ -32,6 +36,14 @@ const ReviewCard = ({
     >
       <a href={`${process.env.NEXT_LOCAL_PORTFOLIO_URL}/projects/${slug}`}>
         <div className="flex flex-row items-center gap-2">
+          <div className="relative h-8 w-8">
+            <Image
+              src={image}
+              alt={name}
+              fill
+              className="rounded-full object-cover"
+            />
+          </div>
           <div className="flex flex-col">
             <figcaption className="text-sm font-medium dark:text-white">
               {name}
@@ -47,19 +59,20 @@ const ReviewCard = ({
 };
 
 const ProjectShowcase = ({ projects }: ProjectShowcaseProps) => {
-  const firstRow = projects.slice(0, projects.length / 2);
-  const secondRow = projects.slice(projects.length / 2);
+  const doubledProjects = [...projects, ...projects]; // Duplicate projects to ensure continuous flow
+  const firstRow = doubledProjects.slice(0, Math.ceil(doubledProjects.length / 2));
+  const secondRow = doubledProjects.slice(Math.ceil(doubledProjects.length / 2));
 
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-20 md:shadow-xl">
       <Marquee pauseOnHover className="[--duration:20s]">
-        {firstRow.map((project) => (
-          <ReviewCard key={project.slug} {...project} />
+        {firstRow.map((project, index) => (
+          <ReviewCard key={`${project.slug}-${index}`} {...project} />
         ))}
       </Marquee>
       <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((project) => (
-          <ReviewCard key={project.slug} {...project} />
+        {secondRow.map((project, index) => (
+          <ReviewCard key={`${project.slug}-${index}`} {...project} />
         ))}
       </Marquee>
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>

@@ -19,38 +19,36 @@ export default function Hero() {
             enjoy expanding.
           </BlurIn>
 
-          <FadeIn direction="down" className="my-class">
-            <div className="flex items-center gap-2 w-full lg:w-2/3 mt-6">
-              <a
-                href={process.env.GITHUB_URL}
-                target="_blank"
-                className="flex-1"
+          <FadeIn direction="down" className="my-class flex items-center gap-2 w-full lg:w-2/3 mt-6">
+            <a
+              href={process.env.GITHUB_URL}
+              target="_blank"
+              className="flex-1"
+            >
+              <Button
+                variant="default"
+                size="lg"
+                className="flex items-center gap-2 w-full group/Github"
               >
-                <Button
-                  variant="default"
-                  size="lg"
-                  className="flex items-center gap-2 w-full group/Github"
-                >
-                  <div>GitHub</div>
-                  <Github className="h-5 w-5 lg:group-hover/Github:translate-x-1 transition-all duration-300" />
-                </Button>
-              </a>
+                <div>GitHub</div>
+                <Github className="h-5 w-5 lg:group-hover/Github:translate-x-1 transition-all duration-300" />
+              </Button>
+            </a>
 
-              <a
-                href="mailto:engage_intellect@protonmail.com"
-                target="_blank"
-                className="flex-1"
+            <a
+              href="mailto:drewsepeczi@gmail.com"
+              target="_blank"
+              className="flex-1"
+            >
+              <Button
+                variant="default"
+                size="lg"
+                className="flex items-center gap-2 w-full group/Mail"
               >
-                <Button
-                  variant="default"
-                  size="lg"
-                  className="flex items-center gap-2 w-full group/Mail"
-                >
-                  <div>Email Me</div>
-                  <Mail className="h-5 w-5 lg:group-hover/Mail:translate-x-1 transition-all duration-300" />
-                </Button>
-              </a>
-            </div>
+                <div>Email Me</div>
+                <Mail className="h-5 w-5 lg:group-hover/Mail:translate-x-1 transition-all duration-300" />
+              </Button>
+            </a>
           </FadeIn>
         </div>
       </div>

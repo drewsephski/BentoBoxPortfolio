@@ -14,9 +14,6 @@ export default function Tech() {
             transition={{ duration: 0.5 }}
           >
             <div className="text-4xl font-bold text-center">Technologies</div>
-            <p className="font-thin">
-              Click on an icon to see projects using that technology.
-            </p>
           </motion.div>
         </div>
         <motion.div
@@ -24,7 +21,7 @@ export default function Tech() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
         >
-          <Technologies liveLinks={true} />
+          <Technologies liveLinks={false} />
         </motion.div>
       </div>
     </div>
