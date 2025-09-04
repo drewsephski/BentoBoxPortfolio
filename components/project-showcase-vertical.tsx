@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
 import Image from "next/image";
 
-interface Project {
+export interface Project {
   id: string;
   slug: string;
   body: string;

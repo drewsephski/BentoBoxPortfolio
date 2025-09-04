@@ -1,10 +1,10 @@
 // ProjectPosts.tsx
 
 "use client";
-
-import { useState, useEffect } from "react";
+ 
+import { useEffect, useState } from "react";
 import { fetchProjects } from "@/lib/fetchers";
-import ProjectShowcaseVertical, { Project } from "@/components/project-showcase-vertical";
+import ProjectShowcaseVertical, { type Project } from "@/components/project-showcase-vertical";
 
 const ProjectPosts = () => {
   const [posts, setPosts] = useState<any | null>(null);

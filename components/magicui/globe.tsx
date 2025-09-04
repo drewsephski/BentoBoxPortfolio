@@ -97,9 +97,9 @@ export default function Globe({
   config?: COBEOptions;
 }) {
   let phi = 0;
-  let width = 0;
+  const widthRef = useRef(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pointerInteracting = useRef(null);
+  const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef(0);
   const [{ r }, api] = useSpring(() => ({
     r: 0,
@@ -124,36 +124,58 @@ export default function Globe({
     }
   };
 
+  const phiRef = useRef(0);
+
   const onRender = useCallback(
     (state: Record<string, any>) => {
-      if (!pointerInteracting.current) phi += 0.0025;
-      state.phi = phi + r.get();
-      state.width = width * 2;
-      state.height = width * 2;
+      if (!pointerInteracting.current) {
+        phiRef.current += 0.0025;
+      }
+      state.phi = phiRef.current + r.get();
+      state.width = widthRef.current * 2;
+      state.height = widthRef.current * 2;
     },
-    [pointerInteracting, phi, r]
+    [r]
   );
 
-  const onResize = () => {
+  const onResize = useCallback(() => {
     if (canvasRef.current) {
-      width = canvasRef.current.offsetWidth;
+      widthRef.current = canvasRef.current.offsetWidth;
     }
-  };
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", onResize);
+    let globe: { destroy: () => void };
+    
+    const handleResize = () => onResize();
+    
+    window.addEventListener("resize", handleResize);
     onResize();
 
-    const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender,
-    });
+    if (canvasRef.current) {
+      globe = createGlobe(canvasRef.current, {
+        ...config,
+        width: widthRef.current * 2,
+        height: widthRef.current * 2,
+        onRender,
+      });
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"));
-    return () => globe.destroy();
-  }, []);
+      // Set initial opacity
+      canvasRef.current.style.opacity = "0";
+      setTimeout(() => {
+        if (canvasRef.current) {
+          canvasRef.current.style.opacity = "1";
+        }
+      });
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (globe) {
+        globe.destroy();
+      }
+    };
+  }, [config, onRender, onResize]);
 
   return (
     <div

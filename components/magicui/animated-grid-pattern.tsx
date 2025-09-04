@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 interface GridPatternProps {
   width?: number;
@@ -33,7 +33,7 @@ export function GridPattern({
   const id = useId();
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [squares, setSquares] = useState(() => generateSquares(numSquares));
+  const [squares, setSquares] = useState<Square[]>(() => generateSquares(numSquares));
 
   function getPos() {
     return [
@@ -42,13 +42,31 @@ export function GridPattern({
     ];
   }
 
-  // Adjust the generateSquares function to return objects with an id, x, and y
-  function generateSquares(count: number) {
+  // Define the square type
+  type Square = {
+    id: number;
+    x: number;
+    y: number;
+    size: number;
+    delay: number;
+    duration: number;
+    opacity: number;
+    pos: [number, number];
+  };
+
+  // Adjust the generateSquares function 
+  const generateSquares = useCallback((count: number): Square[] => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
-      pos: getPos(),
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      delay: Math.random() * 2,
+      duration: Math.random() * 3 + 2,
+      opacity: Math.random() * maxOpacity,
+      pos: [0, 0], // Initialize with default position
     }));
-  }
+  }, [maxOpacity]);
 
   // Function to update a single square's position
   const updateSquarePosition = (id: number) => {
@@ -57,7 +75,7 @@ export function GridPattern({
         sq.id === id
           ? {
               ...sq,
-              pos: getPos(),
+              pos: getPos() as [number, number],
             }
           : sq
       )
@@ -67,31 +85,37 @@ export function GridPattern({
   // Update squares to animate in
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
-      setSquares(generateSquares(numSquares));
+      const squares = generateSquares(numSquares);
+      setSquares(squares);
     }
-  }, [dimensions, numSquares]);
+  }, [dimensions, numSquares, generateSquares]);
 
   // Resize observer to update container dimensions
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
+    const currentRef = containerRef.current;
+    
+    const handleResize = (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
         setDimensions({
           width: entry.contentRect.width,
           height: entry.contentRect.height,
         });
       }
-    });
+    };
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+    const resizeObserver = new ResizeObserver(handleResize);
+
+    if (currentRef) {
+      resizeObserver.observe(currentRef);
     }
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current);
+      if (currentRef) {
+        resizeObserver.unobserve(currentRef);
       }
+      resizeObserver.disconnect();
     };
-  }, [containerRef]);
+  }, []);
 
   return (
     <svg
