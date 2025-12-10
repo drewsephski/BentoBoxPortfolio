@@ -48,9 +48,9 @@ const features = [
     Icon: "",
     name: "I'm Drew",
     description:
-      "software engineer & open-source contributor focused in gen-ai, web, linux, cybersecurity, and finance.",
+      "software engineer & open-source contributor focused on generative AI and modern web development.",
     className: "col-span-3 md:col-span-1",
-    href: "https://deepseekdrew.com/",
+    href: "https://drewsepsi.netlify.app/",
     cta: "Visit portfolio",
     background: (
       <div>
@@ -111,7 +111,7 @@ const features = [
     Icon: "",
     name: "Tech Domain",
     description: "Sector-agnostic, focused on solving problems with code.",
-    href: `https://drew-shadcn.netlify.app/`,
+    href: `https://dream2-iota.vercel.app/`,
     cta: "View projects",
     className: "col-span-3 md:col-span-1",
     background: (
@@ -126,7 +126,7 @@ const features = [
         >
           {defaultDomains.map((f, idx) => (
             <a
-              href={`https://deepseekdrew.com/#projects`}
+              href={`https://drewsepsi.netlify.app`}
               key={idx}
               className={cn(
                 "relative w-40 h-full cursor-pointer overflow-hidden rounded-xl border p-4 hover:-translate-y-1",
@@ -153,7 +153,7 @@ const features = [
     Icon: "",
     name: "Technologies",
     description:
-      "Using a combination of cutting-edge, and time-tested technologies to build robust, scalable, and secure applications.",
+      "Using a combination of cutting-edge, and time-tested technologies to build robust, scalable, and secure applications. Specializing in Nextjs and Typescfript",
     href: "/technologies",
     cta: "View all technologies",
     className: "col-span-3 md:col-span-2",
@@ -170,7 +170,7 @@ const features = [
     name: "AI Integrations",
     description:
       "Generative UIs, LLMs, Transformers, Chatbots, Classification, and more.",
-    href: `https://deepseekdrew.com/#services`,
+    href: `https://aisdk.shop`,
     cta: "Visit AI projects",
     className: "col-span-3 md:col-span-2",
     background: (
@@ -186,9 +186,9 @@ const features = [
   {
     Icon: "",
     name: "Seamless Deployments",
-    description: "Push, build, deploy.",
+    description: "Pushing, building, deploying.",
     className: "col-span-3 md:col-span-1",
-    href: `https://drewsepsi.netlify.app/`,
+    href: `https://codecypher.lol`,
     cta: "Learn more",
     background: (
       <div className="absolute w-full h-full right-0 top-0 origin-top rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_25%,#000_70%)] group-hover:scale-105">
@@ -201,9 +201,9 @@ const features = [
     Icon: "",
     name: "Worldwide Reach",
     description:
-      "Deploy to any region on earth. From remote servers, on-prem, in the cloud, or to the edge.",
+      "Deploying to any region on earth. From remote servers, on-prem, in the cloud, or to the edge.",
     className: "col-span-3 md:col-span-3",
-    href: `https://deepseekdrew.com/#blog`,
+    href: `https://getcracked.lol`,
     cta: "Learn more",
     background: (
       <div className="absolute w-full h-full right-0 top-0 origin-top rounded-md transition-all duration-300 ease-out  [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] md:[mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105 group-hover:-translate-y-4">
@@ -218,7 +218,7 @@ const features = [
     description:
       "Here are a few of my recent projects, using the technologies mentioned above.",
     className: "col-span-3 md:col-span-2",
-    href: "https://deepseekdrew.com/#projects",
+    href: "https://drewsepsi.netlify.app",
     cta: "All projects",
     background: (
       <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out group-hover:scale-[102%]">

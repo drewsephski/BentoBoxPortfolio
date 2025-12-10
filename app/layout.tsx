@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "engage-cook",
+  title: "Drew Sepeczi",
   description: "built using next.js, magic-ui, and tailwindcss",
 };
 
@@ -18,13 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="2fdb0361-4652-403f-b5b9-74f5b7f6d9bf"
-        ></script>
-      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
