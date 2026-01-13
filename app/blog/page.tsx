@@ -1,6 +1,6 @@
 import { docs, meta, type BlogPost } from "@/.source";
 import Link from "next/link";
-import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -35,45 +35,67 @@ export default function BlogPage() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:px-0">
-        <div className="text-center mb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 md:px-8">
+        <div className="text-center mb-20">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance mb-6">
             Blog
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance mb-8">
             Thoughts on React, Next.js, AI, and modern web development practices.
           </p>
+          <Link href="/">
+            <Button variant="outline" className="group">
+              <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform duration-200" />
+              Back to Portfolio
+            </Button>
+          </Link>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {sortedPosts.map((post: BlogPost) => (
-            <Card key={post.slug} className="group hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
-              <Link href={`/blog/${post.slug}`} className="block">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+          {sortedPosts.map((post: BlogPost, index: number) => (
+            <Card 
+              key={post.slug} 
+              className={`group hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm hover:scale-[1.02] hover:border-primary/30 h-full flex flex-col ${
+                index === 0 ? 'md:col-span-2 lg:col-span-1' : ''
+              }`}
+            >
+              <Link href={`/blog/${post.slug}`} className="block h-full flex flex-col">
+                <CardHeader className="pb-4 flex-grow">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <Calendar className="w-4 h-4" />
                     <time>{formatDate(new Date(post.data.date))}</time>
+                    {post.data.readTime && (
+                      <>
+                        <span className="text-muted-foreground">•</span>
+                        <Clock className="w-4 h-4" />
+                        <span>{post.data.readTime}</span>
+                      </>
+                    )}
                   </div>
-                  <CardTitle className="text-xl line-clamp-2 group-hover:text-primary transition-colors">
+                  <CardTitle className={`line-clamp-2 group-hover:text-primary transition-colors ${
+                    index === 0 ? 'text-2xl' : 'text-xl'
+                  } mb-3`}>
                     {post.data.title}
                   </CardTitle>
                   {post.data.description && (
-                    <CardDescription className="line-clamp-3 text-base">
+                    <CardDescription className={`line-clamp-3 text-base break-words ${
+                      index === 0 ? 'line-clamp-2' : ''
+                    }`}>
                       {post.data.description}
                     </CardDescription>
                   )}
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent className="pt-0 mt-auto">
                   {post.data.tags && post.data.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.data.tags.slice(0, 3).map((tag: string) => (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {post.data.tags.slice(0, index === 0 ? 4 : 3).map((tag: string) => (
                         <Badge key={tag} variant="secondary" className="text-xs">
                           {tag}
                         </Badge>
                       ))}
-                      {post.data.tags.length > 3 && (
+                      {post.data.tags.length > (index === 0 ? 4 : 3) && (
                         <Badge variant="outline" className="text-xs">
-                          +{post.data.tags.length - 3}
+                          +{post.data.tags.length - (index === 0 ? 4 : 3)}
                         </Badge>
                       )}
                     </div>
@@ -89,7 +111,7 @@ export default function BlogPage() {
         </div>
 
         {sortedPosts.length === 0 && (
-          <div className="text-center py-16">
+          <div className="text-center py-20">
             <p className="text-muted-foreground text-lg">No blog posts found.</p>
           </div>
         )}
