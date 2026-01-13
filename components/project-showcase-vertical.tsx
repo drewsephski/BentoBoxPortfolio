@@ -42,7 +42,7 @@ const ReviewCard = ({ project }: { project: Project }) => {
         <div className="flex flex-row items-center gap-2">
           <div className="flex flex-col">
             <div className="flex items-start gap-2">
-              <div className="relative h-8 w-8">
+              <div className="relative h-12 w-14">
                 <Image
                   src={image}
                   alt={title}

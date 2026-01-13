@@ -34,21 +34,18 @@ export default function Hero() {
                 <Github className="h-5 w-5 lg:group-hover/Github:translate-x-1 transition-all duration-300" />
               </Button>
             </a>
-
-            <a
-              href="mailto:drewsepeczi@gmail.com"
-              target="_blank"
-              className="flex-1"
-            >
               <Button
                 variant="default"
                 size="lg"
                 className="flex items-center gap-2 w-full group/Mail"
+                onClick={() => {
+                  const element = document.getElementById('contact-form');
+                  element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }}
               >
                 <div>Email Me</div>
                 <Mail className="h-5 w-5 lg:group-hover/Mail:translate-x-1 transition-all duration-300" />
               </Button>
-            </a>
           </FadeIn>
         </div>
       </div>

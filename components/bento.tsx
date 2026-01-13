@@ -10,7 +10,7 @@ import GlobeAndStars from "@/components/globe-and-stars";
 import Hero from "@/components/hero";
 import Marquee from "@/components/magicui/marquee";
 import Technologies from "@/components/technologies";
-import ThemeToggle from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import Orbit from "@/components/orbit";
 import RetroGrid from "@/components/magicui/retro-grid";
 import { cn } from "@/lib/utils";
@@ -18,6 +18,8 @@ import { defaultDomains } from "@/lib/data";
 import { RippleCard } from "./ui/ripper-card";
 import { motion } from "framer-motion";
 import ProjectPosts from "@/components/project-posts";
+import Particles from "@/components/magicui/particles";
+import { WarpBackground } from "@/components/ui/warp-background";
 
 const features = [
   {
@@ -29,9 +31,16 @@ const features = [
     className: "col-span-3 md:col-span-2",
     background: (
       <>
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={50}
+          ease={100}
+          color="#ffffff"
+          staticity={30}
+        />
         <div
           id="hero"
-          className="absolute right-0 top-0 h-full w-full border-none transition-all duration-300 ease-out"
+          className="absolute right-0 top-0 h-full w-full border-none transition-all duration-300 ease-out z-10"
         >
           <Hero />
         </div>
@@ -79,13 +88,15 @@ const features = [
             show: { transition: { delay: 1.5 } },
           }}
         >
-          <a
-            href={
-              process.env.NEXT_PUBLIC_AVAILABLE_FOR_FREELANCE == "true"
-                ? `${process.env.NEXT_PUBLIC_DISCORD}`
-                : "#contact-form"
-            }
-            className="absolute top-2 right-2 bg-background rounded-lg px-4 py-2 text-xs text-neutral-500 dark:text-neutral-300 max-w-3/4 w-fit"
+          <button
+            onClick={() => {
+              if (process.env.NEXT_PUBLIC_AVAILABLE_FOR_FREELANCE == "true") {
+                window.open(process.env.NEXT_PUBLIC_DISCORD, '_blank');
+              } else {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+              }
+            }}
+            className="absolute top-2 right-2 bg-background rounded-lg px-4 py-2 text-xs text-neutral-500 dark:text-neutral-300 max-w-3/4 w-fit hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <div
@@ -101,7 +112,7 @@ const features = [
                   : "on engagement"}
               </div>
             </div>
-          </a>
+          </button>
         </FadeIn>
       </div>
     ),
@@ -165,12 +176,13 @@ const features = [
       </div>
     ),
   },
+
   {
     Icon: "",
     name: "AI Integrations",
     description:
       "Generative UIs, LLMs, Transformers, Chatbots, Classification, and more.",
-    href: `https://aisdk.shop`,
+    href: `https://drewsautomations.world`,
     cta: "Visit AI projects",
     className: "col-span-3 md:col-span-2",
     background: (
@@ -178,8 +190,17 @@ const features = [
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
+        className="relative"
       >
-        <AnimatedBeamMultipleOutputs className="absolute right-0 top-4 h-[300px] w-[600px] border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] md:[mask-image:linear-gradient(to_top,transparent_0%,#000_100%)] group-hover:scale-105" />
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={60}
+          ease={70}
+          color="#ffffff"
+          staticity={35}
+          size={0.4}
+        />
+        <AnimatedBeamMultipleOutputs className="absolute right-0 top-4 h-[300px] w-[600px] border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] md:[mask-image:linear-gradient(to_top,transparent_0%,#000_100%)] group-hover:scale-105 z-10 pointer-events-none" />
       </motion.div>
     ),
   },
@@ -204,10 +225,20 @@ const features = [
       "Deploying to any region on earth. From remote servers, on-prem, in the cloud, or to the edge.",
     className: "col-span-3 md:col-span-3",
     href: `https://getcracked.lol`,
-    cta: "Learn more",
+    cta: "See example",
     background: (
       <div className="absolute w-full h-full right-0 top-0 origin-top rounded-md transition-all duration-300 ease-out  [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] md:[mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105 group-hover:-translate-y-4">
-        <GlobeAndStars />
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={80}
+          ease={60}
+          color="#ffffff"
+          staticity={40}
+          size={0.5}
+        />
+        <div className="relative z-10">
+          <GlobeAndStars />
+        </div>
       </div>
     ),
   },
@@ -218,8 +249,8 @@ const features = [
     description:
       "Here are a few of my recent projects, using the technologies mentioned above.",
     className: "col-span-3 md:col-span-2",
-    href: "https://drewsepsi.netlify.app",
-    cta: "All projects",
+    href: "https://pixel-mint-sigma.vercel.app/",
+    cta: "Image and video generation",
     background: (
       <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out group-hover:scale-[102%]">
         <div className="absolute h-full w-full [mask-image:linear-gradient(to_top,transparent_20%,#000_70%)]">
@@ -240,7 +271,7 @@ const features = [
     name: "",
     description: "",
     className: "col-span-3 md:col-span-1",
-    href: "https://lynxy.netlify.app/",
+    href: "https://astra.motorcycles",
     cta: "Ideas",
     background: (
       <div className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out group-hover:scale-[105%]">
@@ -252,19 +283,63 @@ const features = [
       </div>
     ),
   },
-
+  {
+    Icon: "",
+    name: "Blog",
+    description:
+      "Thoughts on React, Next.js, AI integrations, and modern web development practices.",
+    href: "/blog",
+    cta: "Read articles",
+    className: "col-span-3 md:col-span-3",
+    background: (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_20%,#000_70%)] group-hover:scale-105"
+      >
+        <WarpBackground 
+          perspective={50}
+          beamsPerSide={8}
+          beamSize={3}
+          beamDelayMax={2}
+          beamDelayMin={0.5}
+          beamDuration={4}
+          gridColor="rgba(255, 255, 255, 0.1)"
+          className="bg-transparent border-none p-0 h-full w-full"
+        >
+          <div className="text-center h-full flex flex-col justify-center">
+            <div className="text-xl md:text-2xl font-medium text-neutral-600 dark:text-neutral-400 mt-2">
+              Latest Posts
+            </div>
+            <div className="text-sm text-neutral-500 dark:text-neutral-500 mt-2">
+              Thoughts on web development & AI
+            </div>
+          </div>
+        </WarpBackground>
+      </motion.div>
+    ),
+  },
   {
     Icon: "",
     name: "",
     description: "",
     className: "col-span-3 md:col-span-3",
-    href: "",
+    href: "https://voxflow.netlify.app",
     cta: "",
     background: (
       <div
         id="contact-form"
         className="absolute h-full w-full left-0 top-0 origin-top rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_0%,#000_0%)]"
       >
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={30}
+          ease={120}
+          color="#ffffff"
+          staticity={60}
+          size={0.3}
+        />
         <div className="absolute inset-0 z-50 flex justify-center items-center gap-5 p-5">
           <div className="max-w-sm w-full flex flex-col gap-2">
             <div className="text-5xl md:text-6xl font-semibold text-neutral-700 dark:text-neutral-300 w-full flex justify-start">

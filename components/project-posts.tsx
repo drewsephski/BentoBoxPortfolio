@@ -14,7 +14,7 @@ const ProjectPosts = () => {
     const getPosts = async () => {
       const postsData = await fetchProjects();
       if (postsData) {
-        setFiles(postsData.postsData.slice(0, 10));
+        setFiles(postsData.postsData);
       }
       setPosts(postsData);
     };
