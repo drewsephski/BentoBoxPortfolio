@@ -59,7 +59,7 @@ const features = [
     description:
       "software engineer & open-source contributor focused on generative AI and modern web development.",
     className: "col-span-3 md:col-span-1",
-    href: "https://drewsepsi.netlify.app/",
+    href: "https://drewsautomations.world",
     cta: "Visit portfolio",
     background: (
       <div>
@@ -137,7 +137,7 @@ const features = [
         >
           {defaultDomains.map((f, idx) => (
             <a
-              href={`https://drewsepsi.netlify.app`}
+              href={`https://drewsautomations.world`}
               key={idx}
               className={cn(
                 "relative w-40 h-full cursor-pointer overflow-hidden rounded-xl border p-4 hover:-translate-y-1",
